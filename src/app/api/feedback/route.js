@@ -1,5 +1,6 @@
 import { db_connect } from "@/database";
 import { FeedbackModel } from "@/database/models/feedbackModel";
+import { deleteFile } from "@/lib/deleteFile";
 import { fileuploader } from "@/lib/fileuploader";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
@@ -45,6 +46,12 @@ export async function POST(request) {
         { error: "Feedback creation failed" },
         { status: 500 }
       );
+    }
+    const feedbacks = await FeedbackModel.find().sort({ createdAt: 1 });
+    console.log(feedbacks.length);
+    if (feedbacks && feedbacks.length > 10) {
+      await FeedbackModel.findByIdAndDelete(feedbacks[0]._id);
+      deleteFile("feedback", feedbacks[0].image);
     }
     const paths = ["/", "/services"];
     paths.forEach((p) => revalidatePath(p));

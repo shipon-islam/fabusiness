@@ -12,7 +12,7 @@ export default function Account() {
   const fileRef = useRef(null);
   const router = useRouter();
   const [isName, setIsName] = useState(false);
-  const [username, setUsername] = useState("");
+  const nameRef = useRef("");
   const [loading, setLoading] = useState(false);
 
   const handleProfileChange = async (e) => {
@@ -40,6 +40,7 @@ export default function Account() {
   };
   const handleNameChange = async (e) => {
     e.preventDefault();
+    const username = nameRef?.current?.value;
     if (!username) return;
     const formData = new FormData();
     formData.append("name", username);
@@ -105,8 +106,8 @@ export default function Account() {
               <form onSubmit={handleNameChange} className="gap-1 flex">
                 <input
                   type="text"
-                  value={username || user?.name}
-                  onChange={(e) => setUsername(e.target.value)}
+                  ref={nameRef}
+                  defaultValue={user?.name}
                   className="border border-gold rounded-md py-0.5 px-2 focus:outline-none"
                 />
                 <Button

@@ -1,5 +1,6 @@
 import { db_connect } from "@/database";
 import { BlogModel } from "@/database/models/blogModel";
+import { deleteFile } from "@/lib/deleteFile";
 import { fileuploader } from "@/lib/fileuploader";
 import { verifyToken } from "@/lib/jwt";
 import { revalidatePath } from "next/cache";
@@ -46,8 +47,9 @@ export async function POST(request) {
       );
     }
     const blogs = await BlogModel.find().sort({ createdAt: 1 });
-    if (blogs.length > 5) {
+    if (blogs && blogs.length > 5) {
       await BlogModel.findByIdAndDelete(blogs[0]._id);
+      deleteFile("blog", blogs[0].image);
     }
     const paths = ["/", "/blogs"];
     paths.forEach((p) => revalidatePath(p));

@@ -95,6 +95,11 @@ export default function TestimonialSection({ feedbacks }) {
               })}
             </Swiper>
           </div>
+          {feedbacks.length < 1 && (
+            <p className="capitalize text-2xl text-center text-red-500 font-bold ">
+              There are no feedbacks yet !
+            </p>
+          )}
         </div>
       </div>
     </section>

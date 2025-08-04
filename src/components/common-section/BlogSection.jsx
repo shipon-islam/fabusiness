@@ -57,6 +57,11 @@ export default function BlogSection({ isHeading = true, blogs }) {
             );
           })}
         </div>
+        {blogsList.length < 1 && (
+          <p className="capitalize text-2xl text-center text-red-500">
+            There are no blogs yet!
+          </p>
+        )}
         <Button
           onClick={handleChange}
           name={blogsList.length < 4 ? "Explore All Blogs" : "Less Blogs"}

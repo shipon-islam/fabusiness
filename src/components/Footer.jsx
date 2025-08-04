@@ -95,9 +95,9 @@ export default function Footer() {
               alt="band-logo"
               width={120}
               height={120}
-              className="object-cover w-24 h-auto"
+              className="object-cover w-24 h-auto "
             />
-            <p className="text-white/80 font-roboto text-justify xl:w-[90%]">
+            <p className="text-white/80 font-roboto text-justify xl:w-[90%] mt-4">
               FA Business & Tax Solutions Inc. is committed to delivering
               accurate, timely, and transparent financial services. Our team
               ensures every task is handled with care, compliance, and
