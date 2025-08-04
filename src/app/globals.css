@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@theme {
+  --color-darkSlate: #1c2c37;
+  --color-deepBlue: #1c3557;
+  --color-lightBlue: #6495ed;
+  --color-darkBlue: #6495ed80;
+  --color-gold: #bf954a;
+  --color-deepGold: #8e8a5e;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-moulpali: "Moulpali", sans-serif;
+  --breakpoint-xxs: 342px;
+}
+
+@utility container {
+  @apply mx-auto max-w-none 2xl:max-w-[1440px] px-4 md:!px-10 lg:px-8;
+}
+
+@layer components {
+  .custom-shadow {
+    @apply shadow-[0px_4px_40px_0px_#00000014] hover:shadow-xl;
+  }
+}
+
+@custom-variant hover (&:hover);
