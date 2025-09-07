@@ -22,7 +22,7 @@ export async function POST(request) {
         <h2 style="color: #4CAF50;">New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${phone}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
         <p><strong>Message:</strong></p>
         <p>${message}</p>
       </div>
