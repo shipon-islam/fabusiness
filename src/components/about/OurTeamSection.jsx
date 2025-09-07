@@ -12,13 +12,16 @@ export default function OurTeamSection() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 gap-10 w-fit mx-auto">
           {teamList.map((teamMember, index) => (
-            <div className="p-8 custom-shadow rounded-md" key={index}>
+            <div
+              className="p-8 custom-shadow rounded-md max-w-[400px]"
+              key={index}
+            >
               <Image
                 src={teamMember.image}
                 alt="team"
-                className=" w-full h-auto object-cover rounded-md mb-4"
+                className=" w-full h-auto object-cover rounded-md mb-4 border border-gray-200"
                 width={340}
                 height={227}
               />

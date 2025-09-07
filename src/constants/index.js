@@ -59,6 +59,152 @@ const {
 // ];
 export const servicesCardList = [
   {
+    id: 6,
+    title: "Bookkeeping",
+    slug: "bookkeeping",
+    description:
+      "Keep your business financially organized with clean, up-to-date books. We handle everything from accounts payable to reconciliations, so you always have a clear picture of your financial health. Say goodbye to messy records and hello to peace of mind. ",
+    icon: <BookkeepingIcon />,
+    pages: {
+      firstSection: {
+        top: "Your Books, Bulletproof",
+        bottom:
+          "Keep your records clean and compliant with our expert bookkeeping services.",
+      },
+      secondSection: {
+        list: [
+          "Set up or clean up your books using QuickBooks or Xero.",
+          "Categorize transactions, reconcile bank/credit accounts monthly.",
+          "Generate profit/loss reports, balance sheets, and cash flow summaries.",
+          "Identify financial discrepancies or expense inefficiencies.",
+          "Provide monthly/quarterly review and tax-ready reports.",
+        ],
+        image: "/images/service-sub-page/bookkeeping/1.jpg",
+      },
+
+      thirdSection: {
+        top: "Full Ledger Coverage",
+        bottom:
+          "We handle accounts payable, receivable, payroll logging, and monthly reporting.",
+        image: "/images/service-sub-page/bookkeeping/2.jpg",
+      },
+
+      fourthSection: {
+        heading: "Certified & Detail-Obsessed",
+        top: "Our team is trained in QuickBooks, Xero, and all major bookkeeping platforms.",
+        image: "/images/service-sub-page/bookkeeping/3.jpg",
+      },
+      fifthSection: {
+        heading: "Clean Books = Clear Growth",
+        top: "Accurate books improve decision-making, tax readiness, and operational insight.",
+        image: "/images/service-sub-page/bookkeeping/4.jpg",
+      },
+      sixthSection: {
+        top: "Every Dollar Accounted",
+        bottom:
+          "We manage expenses, income, and reconciliations so your books are always investor- and tax-ready.",
+        image: "/images/service-sub-page/bookkeeping/5.jpg",
+      },
+    },
+  },
+  {
+    id: 7,
+    title: "Payrolls",
+    slug: "payrolls",
+    description:
+      "Pay your team accurately and on time—without the payroll headaches. We manage tax deductions, direct deposits, filings, and more so you can focus on running your business. Reliable, affordable, and fully compliant. ",
+    icon: <DollarFillIcon />,
+    pages: {
+      firstSection: {
+        top: "Payday Made Simple",
+        bottom:
+          "We handle your entire payroll process—accurately and on time, every time.",
+      },
+      secondSection: {
+        list: [
+          "Gather employee data and preferred pay schedules.",
+          "Register for payroll tax accounts (if needed).",
+          "Process time-sheets and calculate wages, taxes, and deductions.",
+          "File state/federal payroll reports and remit payments (941, 940, W-2s).",
+          "Provide pay stubs, direct deposit, and year-end tax forms.",
+        ],
+        image: "/images/service-sub-page/payrolls/1.jpg",
+      },
+      thirdSection: {
+        top: "Payroll From Start to Finish",
+        bottom:
+          "Includes paycheck processing, benefits tracking, W-2s, and government filings.",
+        image: "/images/service-sub-page/payrolls/2.jpg",
+      },
+
+      fourthSection: {
+        heading: "HR-Savvy Accountants",
+        top: "Our team has experience managing small to mid-size business payrolls with precision.",
+        image: "/images/service-sub-page/payrolls/3.jpg",
+      },
+      fifthSection: {
+        heading: "Happy Staff, Fewer Errors",
+        top: "Avoid fines and employee complaints—stay compliant and consistent.",
+        image: "/images/service-sub-page/payrolls/4.jpg",
+      },
+
+      sixthSection: {
+        top: "Compliant & Convenient",
+        bottom:
+          "From salary calculations to tax withholdings, our system ensures stress-free payroll.",
+        image: "/images/service-sub-page/payrolls/5.jpg",
+      },
+    },
+  },
+  {
+    id: 12,
+    title: "Business Formation",
+    slug: "business-formation",
+    description:
+      "FA Business helps you register, structure, and launch your business legally and strategically, whether it’s an  Small, Big, S-Corp, or Corporation.",
+    icon: <HandShakeIcon />,
+    pages: {
+      firstSection: {
+        top: "Right Business Structure Start Strong",
+        bottom: "Forming a business isn’t just about paperwork",
+      },
+      secondSection: {
+        list: [
+          "One-on-one consultation to choose the right structure (LLC, S-Corp, C-Corp, Non-profit organization , Sole proprietor , etc.)",
+          "Business name availability search and legal registration",
+          "Filing of formation documents with the Secretary of State",
+          "Application for EIN (Employer Identification Number)",
+          "Setup of Operating Agreement and tax structure",
+          "Compliance checklist and post-formation guidance",
+        ],
+        image: "/images/service-sub-page/business-information/1.jpg",
+      },
+      thirdSection: {
+        top: "Guesswork Out of Business Formation",
+        bottom:
+          "From selecting the right entity to handling the filings, we’re with you at every step — smart, simple, and stress-free.",
+        image: "/images/service-sub-page/business-information/2.jpg",
+      },
+
+      fourthSection: {
+        heading: "Start Your Business with Confidence",
+        top: "We’re not just filing agents — we’re your long-term business partner.",
+        image: "/images/service-sub-page/business-information/3.jpg",
+      },
+      fifthSection: {
+        heading: "Papers Ready - Just Launch.",
+        top: "Our formation services are backed by tax pros and compliance experts, ensuring every detail is done right the first time.",
+        image: "/images/service-sub-page/business-information/4.jpg",
+      },
+      sixthSection: {
+        top: "No Stress - Start Business",
+        bottom:
+          "We’re not just filing agents — we’re your long-term business partner.",
+        image: "/images/service-sub-page/business-information/5.jpg",
+      },
+    },
+  },
+  {
     id: 1,
     title: "Individual Tax Return",
     slug: "individual-tax-return",
@@ -304,104 +450,7 @@ export const servicesCardList = [
       },
     },
   },
-  {
-    id: 6,
-    title: "Bookkeeping",
-    slug: "bookkeeping",
-    description:
-      "Keep your business financially organized with clean, up-to-date books. We handle everything from accounts payable to reconciliations, so you always have a clear picture of your financial health. Say goodbye to messy records and hello to peace of mind. ",
-    icon: <BookkeepingIcon />,
-    pages: {
-      firstSection: {
-        top: "Your Books, Bulletproof",
-        bottom:
-          "Keep your records clean and compliant with our expert bookkeeping services.",
-      },
-      secondSection: {
-        list: [
-          "Set up or clean up your books using QuickBooks or Xero.",
-          "Categorize transactions, reconcile bank/credit accounts monthly.",
-          "Generate profit/loss reports, balance sheets, and cash flow summaries.",
-          "Identify financial discrepancies or expense inefficiencies.",
-          "Provide monthly/quarterly review and tax-ready reports.",
-        ],
-        image: "/images/service-sub-page/bookkeeping/1.jpg",
-      },
 
-      thirdSection: {
-        top: "Full Ledger Coverage",
-        bottom:
-          "We handle accounts payable, receivable, payroll logging, and monthly reporting.",
-        image: "/images/service-sub-page/bookkeeping/2.jpg",
-      },
-
-      fourthSection: {
-        heading: "Certified & Detail-Obsessed",
-        top: "Our team is trained in QuickBooks, Xero, and all major bookkeeping platforms.",
-        image: "/images/service-sub-page/bookkeeping/3.jpg",
-      },
-      fifthSection: {
-        heading: "Clean Books = Clear Growth",
-        top: "Accurate books improve decision-making, tax readiness, and operational insight.",
-        image: "/images/service-sub-page/bookkeeping/4.jpg",
-      },
-      sixthSection: {
-        top: "Every Dollar Accounted",
-        bottom:
-          "We manage expenses, income, and reconciliations so your books are always investor- and tax-ready.",
-        image: "/images/service-sub-page/bookkeeping/5.jpg",
-      },
-    },
-  },
-  {
-    id: 7,
-    title: "Payrolls",
-    slug: "payrolls",
-    description:
-      "Pay your team accurately and on time—without the payroll headaches. We manage tax deductions, direct deposits, filings, and more so you can focus on running your business. Reliable, affordable, and fully compliant. ",
-    icon: <DollarFillIcon />,
-    pages: {
-      firstSection: {
-        top: "Payday Made Simple",
-        bottom:
-          "We handle your entire payroll process—accurately and on time, every time.",
-      },
-      secondSection: {
-        list: [
-          "Gather employee data and preferred pay schedules.",
-          "Register for payroll tax accounts (if needed).",
-          "Process time-sheets and calculate wages, taxes, and deductions.",
-          "File state/federal payroll reports and remit payments (941, 940, W-2s).",
-          "Provide pay stubs, direct deposit, and year-end tax forms.",
-        ],
-        image: "/images/service-sub-page/payrolls/1.jpg",
-      },
-      thirdSection: {
-        top: "Payroll From Start to Finish",
-        bottom:
-          "Includes paycheck processing, benefits tracking, W-2s, and government filings.",
-        image: "/images/service-sub-page/payrolls/2.jpg",
-      },
-
-      fourthSection: {
-        heading: "HR-Savvy Accountants",
-        top: "Our team has experience managing small to mid-size business payrolls with precision.",
-        image: "/images/service-sub-page/payrolls/3.jpg",
-      },
-      fifthSection: {
-        heading: "Happy Staff, Fewer Errors",
-        top: "Avoid fines and employee complaints—stay compliant and consistent.",
-        image: "/images/service-sub-page/payrolls/4.jpg",
-      },
-
-      sixthSection: {
-        top: "Compliant & Convenient",
-        bottom:
-          "From salary calculations to tax withholdings, our system ensures stress-free payroll.",
-        image: "/images/service-sub-page/payrolls/5.jpg",
-      },
-    },
-  },
   {
     id: 8,
     title: "Notary Public",
@@ -591,54 +640,6 @@ export const servicesCardList = [
       },
     },
   },
-  {
-    id: 12,
-    title: "Business Formation",
-    slug: "business-formation",
-    description:
-      "FA Business helps you register, structure, and launch your business legally and strategically, whether it’s an  Small, Big, S-Corp, or Corporation.",
-    icon: <HandShakeIcon />,
-    pages: {
-      firstSection: {
-        top: "Right Business Structure Start Strong",
-        bottom: "Forming a business isn’t just about paperwork",
-      },
-      secondSection: {
-        list: [
-          "One-on-one consultation to choose the right structure (LLC, S-Corp, C-Corp, etc.)",
-          "Business name availability search and legal registration",
-          "Filing of formation documents with the Secretary of State",
-          "Application for EIN (Employer Identification Number)",
-          "Setup of Operating Agreement and tax structure",
-          "Compliance checklist and post-formation guidance",
-        ],
-        image: "/images/service-sub-page/business-information/1.jpg",
-      },
-      thirdSection: {
-        top: "Guesswork Out of Business Formation",
-        bottom:
-          "From selecting the right entity to handling the filings, we’re with you at every step — smart, simple, and stress-free.",
-        image: "/images/service-sub-page/business-information/2.jpg",
-      },
-
-      fourthSection: {
-        heading: "Start Your Business with Confidence",
-        top: "We’re not just filing agents — we’re your long-term business partner.",
-        image: "/images/service-sub-page/business-information/3.jpg",
-      },
-      fifthSection: {
-        heading: "Papers Ready - Just Launch.",
-        top: "Our formation services are backed by tax pros and compliance experts, ensuring every detail is done right the first time.",
-        image: "/images/service-sub-page/business-information/4.jpg",
-      },
-      sixthSection: {
-        top: "No Stress - Start Business",
-        bottom:
-          "We’re not just filing agents — we’re your long-term business partner.",
-        image: "/images/service-sub-page/business-information/5.jpg",
-      },
-    },
-  },
 ];
 export const testimonialList = [
   {
@@ -760,20 +761,14 @@ export const blogList = [
 export const teamList = [
   {
     id: 1,
-    name: "Kerry Herman",
-    image: "/images/team/business-men-conversation-pointing-hand-window.jpg",
-    mail: "Kerry.Herman@gmail.com",
+    name: "Co-Founder: Fahad I Mizan",
+    image: "/images/team/fahad.jpg",
+    mail: "fahad.rahad367@gmail.com",
   },
   {
     id: 2,
-    name: "Gayle Cremin",
-    image: "/images/team/business-men-conversation-pointing-hand-window-1.jpg",
-    mail: "Gayle_Cremin@yahoo.com",
-  },
-  {
-    id: 3,
-    name: "Anne Hermann",
-    image: "/images/team/man-near-window.jpg",
-    mail: "Anne_Hermann87@gmail.com",
+    name: "Co-Founder: Zmh Tahereen",
+    image: "/images/team/tahereen.jpg",
+    mail: "zmhtahereen@gmail.com",
   },
 ];

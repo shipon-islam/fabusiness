@@ -5,10 +5,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Button from "../Button";
+import FileInput from "../FileInput";
 import InputBox from "../InputBox";
 
 export default function ContactUsSection() {
   const [loading, setLoading] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
   const {
     register,
     reset,
@@ -19,20 +21,31 @@ export default function ContactUsSection() {
   });
   const onSubmit = async (data) => {
     setLoading("true");
+
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("phone", data.phone);
+    formData.append("message", data.message);
+    if (selectedFile) {
+      formData.append("file", selectedFile);
+    }
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+        body: formData,
       });
       if (response.ok) {
         reset();
         setLoading(false);
         toast.success("Email sent successfully");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
       } else {
         setLoading(false);
+
         const errorText = await response.text();
         toast.error(`Failed to send email: ${errorText}`);
       }
@@ -87,6 +100,11 @@ export default function ContactUsSection() {
               {...register("phone")}
               error={errors?.phone}
             />
+            <div>
+              <label className="pb-1.5 inline-block">Document (optional)</label>
+              <FileInput onFileChange={setSelectedFile} />
+            </div>
+
             <InputBox
               label="Message"
               {...register("message")}

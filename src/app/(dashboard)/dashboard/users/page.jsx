@@ -14,7 +14,6 @@ export default function page() {
         }
         const data = await response.json();
         setUsers(data);
-        console.log(data);
       } catch (error) {
         console.error("There was a problem with the fetch operation:", error);
       }
@@ -46,21 +45,26 @@ export default function page() {
         method: "PUT",
         body: formData,
       });
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
 
-      setUsers(
-        users.map((user) => {
-          if (user._id === id) {
-            return { ...user, role };
-          }
-          return user;
-        })
-      );
-      toast.success("Role updated successfully!");
+      if (response.status === 400) {
+        return toast.error("Maximum of 5 admin accounts allowed");
+      }
+      if (!response.ok) {
+        return toast.error("Network response was not ok");
+      }
+      if (response.ok) {
+        setUsers(
+          users.map((user) => {
+            if (user._id === id) {
+              return { ...user, role };
+            }
+            return user;
+          })
+        );
+        toast.success("Role updated successfully!");
+      }
     } catch (error) {
-      console.error("There was a problem with the delete operation:", error);
+      console.error("There was a problem with the update operation:", error);
       toast.error(error.message);
     }
   };

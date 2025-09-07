@@ -1,20 +1,46 @@
-import { useRef } from "react";
+"use client";
 
-const FileInput = ({
-  handleFile,
-  file,
-  acceptableFile,
+import { useRef, useState } from "react";
+
+const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+const SUPPORTED_FORMATS = ["application/pdf", "image/jpeg"];
+
+export default function FileInput({
+  onFileChange,
+  acceptableFile = "PDF or JPG Accept",
   className,
   ...rest
-}) => {
+}) {
   const dropRef = useRef();
+  const [file, setFile] = useState(null);
+  const [error, setError] = useState("");
+
+  // Validate file before sending to parent
+  const validateAndSetFile = (selectedFile) => {
+    if (!SUPPORTED_FORMATS.includes(selectedFile.type)) {
+      setError("❌ Only PDF or JPG files are allowed");
+      setFile(null);
+      onFileChange(null);
+      return;
+    }
+    if (selectedFile.size > MAX_SIZE) {
+      setError("❌ File size must be less than 5MB");
+      setFile(null);
+      onFileChange(null);
+      return;
+    }
+    setError("");
+    setFile(selectedFile);
+    onFileChange(selectedFile); // pass to parent
+  };
 
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    dropRef.current.classList.remove("bg-gray-200");
     const { files } = e.dataTransfer;
     if (files && files.length > 0) {
-      handleFile(files);
+      validateAndSetFile(files[0]);
     }
   };
 
@@ -29,19 +55,21 @@ const FileInput = ({
   };
 
   const handleFileSelect = (e) => {
-    handleFile(e.target.files);
+    if (e.target.files && e.target.files[0]) {
+      validateAndSetFile(e.target.files[0]);
+    }
   };
 
   return (
-    <div className="">
+    <div className="space-y-2">
       <div
         ref={dropRef}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
-        className={`border border-black/20 rounded-sm  text-center transition-all flex items-center justify-between w-full py-4 px-3 text-gray-500 ${className}`}
+        className={`border border-black/20 rounded-md text-center transition-all flex items-center justify-between w-full py-4 px-3 text-gray-500 ${className}`}
       >
-        <div className="flex items-center gap-x-1">
+        <div className="flex items-center gap-x-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -52,32 +80,38 @@ const FileInput = ({
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="lucide lucide-image-up-icon lucide-image-up text-blue-500"
+            className="text-blue-500"
           >
             <path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21" />
             <path d="m14 19.5 3-3 3 3" />
             <path d="M17 22v-5.5" />
             <circle cx="9" cy="9" r="2" />
           </svg>
+
           <div>
             <input
               type="file"
               onChange={handleFileSelect}
               className="hidden"
               id="fileInput"
+              accept=".pdf,.jpg,.jpeg"
               {...rest}
             />
             <label htmlFor="fileInput" className="cursor-pointer underline">
               Upload
             </label>
           </div>
-          <p className="">or drop files here</p>
+
+          <p className="text-sm">or drop file here</p>
         </div>
-        <p className="text-sm hidden  sm:block">{acceptableFile}</p>
+
+        <p className="text-xs text-gray-400 hidden sm:block">
+          {acceptableFile}
+        </p>
       </div>
-      {file && <p>{file.name}</p>}
+
+      {file && <p className="text-green-600 text-sm">✅ {file.name}</p>}
+      {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>
   );
-};
-
-export default FileInput;
+}

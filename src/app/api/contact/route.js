@@ -2,13 +2,19 @@ import { transporter } from "@/lib/transporter";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  const { name, email, phone, message } = await request.json();
-  if (!name || !email || !phone || !message) {
+  const formData = await request.formData();
+  if (
+    !formData.has("name") ||
+    !formData.has("email") ||
+    !formData.has("phone") ||
+    !formData.has("message")
+  ) {
     return NextResponse.json(
-      { error: "All fields are required" },
+      { error: "Missing required fields" },
       { status: 400 }
     );
   }
+  const { name, email, phone, message, file } = Object.fromEntries(formData);
 
   try {
     const mail_html = `
@@ -21,13 +27,27 @@ export async function POST(request) {
         <p>${message}</p>
       </div>
     `;
-
-    await transporter.sendMail({
+    const mailOptions = {
       from: `"${name}" <${email}>`,
       to: process.env.EMAIL,
       subject: `Contact Form Submission from ${name}`,
       html: mail_html,
-    });
+    };
+
+    if (file && file.name) {
+      const arrayBuffer = await file.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+
+      mailOptions.attachments = [
+        {
+          filename: file.name,
+          content: buffer,
+          contentType: file.type,
+        },
+      ];
+    }
+
+    await transporter.sendMail(mailOptions);
 
     return NextResponse.json(
       { message: "Email sent successfully" },

@@ -106,13 +106,16 @@ export default function Footer() {
             </p>
             <ul className="flex gap-x-4 mt-10">
               <li className="bg-white/10 p-2 rounded-lg hover:bg-gold transition-colors duration-300">
-                <a href="#">
+                <a
+                  href="https://www.facebook.com/share/1GeSz4cQTV/?mibextid=wwXIfr"
+                  target="_blank"
+                >
                   <FacebookIcon />
                 </a>
               </li>
               <li className="bg-white/10 p-2 rounded-lg hover:bg-gold transition-colors duration-300">
                 <a
-                  href="https://www.instagram.com/fa_business_and_tax_solution/"
+                  href="https://www.instagram.com/fa_business_and_tax_solution?igsh=bGxuZWpjc3VtM2k2"
                   target="_blank"
                 >
                   <InstagramIcon />
@@ -124,7 +127,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="bg-white/10 p-2 rounded-lg hover:bg-gold transition-colors duration-300">
-                <a href="#">
+                <a href="https://www.linkedin.com/company/fa-business-tax-solution-inc/">
                   <LinkedinIcon />
                 </a>
               </li>
@@ -169,22 +172,22 @@ export default function Footer() {
                 <li className="flex items-center gap-x-2 hover:text-gold hover:underline">
                   <LocationIcon />
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=307+Beverley,+New+York"
+                    href="https://www.google.com/maps?q=14661+107th+Avenue+Jamaica+NY+11435"
                     target="_blank"
                   >
-                    307 Beverley, New York
+                    14661 107th Avenue Jamaica NY 11435
                   </a>
                 </li>
                 <li className="flex items-center gap-x-2 hover:text-gold hover:underline">
                   <CallIcon />
-                  <a href="tel:(02) 4955 3474" target="_blank">
-                    (02) 4955 3474
+                  <a href="tel:347-233-3777" target="_blank">
+                    347-233-3777
                   </a>
                 </li>
                 <li className="flex items-center gap-x-2 hover:text-gold hover:underline">
                   <WhatsappIcon />
-                  <a href="tel:+1 (917) 818-5122" target="_blank">
-                    1 (917) 818-5122
+                  <a href="tel:917-818–5122" target="_blank">
+                    917-818–5122
                   </a>
                 </li>
                 <li className="flex items-center gap-x-2 hover:text-gold hover:underline">

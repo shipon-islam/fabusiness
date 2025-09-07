@@ -2,6 +2,7 @@
 import Button from "@/components/Button";
 import Header from "@/components/Header";
 import InputBox from "@/components/InputBox";
+import { EyeCloseIcon, EyeOpenIcon } from "@/components/SvgIcons";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -13,6 +14,7 @@ export default function Login() {
     password: "",
   });
   const [loading, setLoading] = useState(false);
+  const [isShowPassword, setIsShowPassword] = useState(false);
   const router = useRouter();
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -64,15 +66,24 @@ export default function Login() {
                 setFormData({ ...formdata, email: e.target.value })
               }
             />
-            <InputBox
-              label="Password"
-              name="password"
-              type="password"
-              value={formdata.password}
-              onChange={(e) =>
-                setFormData({ ...formdata, password: e.target.value })
-              }
-            />
+            <div className="relative h-fit">
+              <InputBox
+                label="Password"
+                name="password"
+                type={isShowPassword ? "text" : "password"}
+                value={formdata.password}
+                onChange={(e) =>
+                  setFormData({ ...formdata, password: e.target.value })
+                }
+              />
+              <button
+                onClick={() => setIsShowPassword((prev) => !prev)}
+                className="absolute top-[55%] right-2 text-gray-500 cursor-pointer"
+                type="button"
+              >
+                {isShowPassword ? <EyeCloseIcon /> : <EyeOpenIcon />}
+              </button>
+            </div>
             <Button
               className="w-full"
               name={loading ? "Logging..." : "Login"}

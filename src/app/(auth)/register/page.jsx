@@ -2,6 +2,7 @@
 import Button from "@/components/Button";
 import Header from "@/components/Header";
 import InputBox from "@/components/InputBox";
+import { EyeCloseIcon, EyeOpenIcon } from "@/components/SvgIcons";
 import { userSchema } from "@/yup/userSchema";
 
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -13,6 +14,8 @@ import toast from "react-hot-toast";
 
 export default function Register() {
   const [loading, setLoading] = useState(false);
+  const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isShowCPassword, setIsShowCPassword] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -74,23 +77,37 @@ export default function Register() {
               <InputBox {...register("email")} label="Your Email (Business)" />
               <p className="text-red-600 text-sm">{errors.email?.message}</p>
             </div>
-            <div>
+            <div className="relative">
               <InputBox
                 {...register("password")}
                 label="Password"
-                type="password"
+                type={isShowPassword ? "text" : "password"}
               />
               <p className="text-red-600 text-sm">{errors.password?.message}</p>
+              <button
+                onClick={() => setIsShowPassword((prev) => !prev)}
+                className="absolute top-[55%] right-2 text-gray-500 cursor-pointer"
+                type="button"
+              >
+                {isShowPassword ? <EyeCloseIcon /> : <EyeOpenIcon />}
+              </button>
             </div>
-            <div>
+            <div className="relative">
               <InputBox
                 {...register("confirmPassword")}
                 label="Confirm Password"
-                type="password"
+                type={isShowCPassword ? "text" : "password"}
               />
               <p className="text-red-600 text-sm">
                 {errors.confirmPassword?.message}
               </p>
+              <button
+                onClick={() => setIsShowCPassword((prev) => !prev)}
+                className="absolute top-[55%] right-2 text-gray-500 cursor-pointer"
+                type="button"
+              >
+                {isShowCPassword ? <EyeCloseIcon /> : <EyeOpenIcon />}
+              </button>
             </div>
 
             <Button

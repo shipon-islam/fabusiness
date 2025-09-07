@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-
+const SUPPORTED_FORMATS = ["application/pdf", "image/jpeg", "image/jpg"];
 export const contactYupSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Fullname is required") // min(1) instead of min(0) to ensure non-empty

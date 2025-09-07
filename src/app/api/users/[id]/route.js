@@ -14,6 +14,16 @@ export async function PUT(request, context) {
     if (formData.has("avatar")) {
       const filename = await fileuploader(body.avatar, "user");
       updatedData = { ...body, avatar: filename };
+    } else if (formData.has("role") && body?.role == "admin") {
+      const isExistUser = await UserModel.find({ role: "admin" });
+      if (isExistUser.length >= 5) {
+        return NextResponse.json(
+          { error: "Maximum of 5 admin accounts allowed" },
+          { status: 400 }
+        );
+      } else {
+        updatedData = { ...body };
+      }
     } else {
       updatedData = { ...body };
     }

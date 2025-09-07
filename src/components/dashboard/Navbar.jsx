@@ -12,7 +12,9 @@ const Navbar = () => {
   return (
     <div className=" py-6 px-10 bg-white shadow ">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-semibold">Hello, John 👋</h2>
+        <h2 className="text-2xl font-semibold capitalize">
+          Hello, {user ? user?.name : "John"} 👋
+        </h2>
         <div className="flex items-center gap-4">
           <button
             className="cursor-pointer md:hidden"

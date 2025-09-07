@@ -1,6 +1,6 @@
 import { StarEmptyIcon, StarHalfIcon, StarIcon } from "./SvgIcons";
 
-export default function ({ rating = 4.5 }) {
+export default function Rating({ rating = 4.5 }) {
   const arr = Array.from({ length: 5 }, (v, i) => {
     let index = i + 0.5;
     return (

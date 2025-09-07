@@ -22,9 +22,9 @@ export default async function Home() {
           style={{
             backgroundImage: `linear-gradient(to right,rgba(0,0,0,0.9),rgba(0,0,0,0.1)),url("/images/bg/blue-city.jpg")`,
           }}
-          className=" bg-cover bg-center text-white min-h-[700px] md:min-h-[809px] relative"
+          className="bg-cover bg-center text-white min-h-[700px] md:min-h-[809px] relative"
         >
-          <div className="container ">
+          <div className="container">
             <div className="absolute top-1/2 -translate-y-1/2 pt-20">
               <h5 className="text-lg md:text-xl text-deepGold font-medium ">
                 Accounting Personalized
