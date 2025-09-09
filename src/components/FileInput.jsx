@@ -2,45 +2,51 @@
 
 import { useRef, useState } from "react";
 
-const MAX_SIZE = 5 * 1024 * 1024; // 5MB
 const SUPPORTED_FORMATS = ["application/pdf", "image/jpeg"];
+const MAX_FILES = 5;
 
 export default function FileInput({
   onFileChange,
-  acceptableFile = "PDF or JPG Accept",
+  acceptableFile = "PDF or JPG (max 5 files)",
   className,
   ...rest
 }) {
   const dropRef = useRef();
-  const [file, setFile] = useState(null);
-  const [error, setError] = useState("");
+  const [files, setFiles] = useState([]);
+  const [errors, setErrors] = useState([]);
 
-  // Validate file before sending to parent
-  const validateAndSetFile = (selectedFile) => {
-    if (!SUPPORTED_FORMATS.includes(selectedFile.type)) {
-      setError("❌ Only PDF or JPG files are allowed");
-      setFile(null);
-      onFileChange(null);
+  const validateAndSetFiles = (selectedFiles) => {
+    const allFiles = Array.from(selectedFiles);
+    const validFiles = [];
+    const errorList = [];
+
+    if (allFiles.length + files.length > MAX_FILES) {
+      errorList.push(`❌ You can upload maximum ${MAX_FILES} files at a time`);
+      setErrors(errorList);
       return;
     }
-    if (selectedFile.size > MAX_SIZE) {
-      setError("❌ File size must be less than 5MB");
-      setFile(null);
-      onFileChange(null);
-      return;
-    }
-    setError("");
-    setFile(selectedFile);
-    onFileChange(selectedFile); // pass to parent
+
+    allFiles.forEach((file) => {
+      if (!SUPPORTED_FORMATS.includes(file.type)) {
+        errorList.push(`${file.name}: ❌ Only PDF or JPG files are allowed`);
+      } else {
+        validFiles.push(file);
+      }
+    });
+
+    const newFiles = [...files, ...validFiles];
+    setFiles(newFiles);
+    setErrors(errorList);
+    onFileChange(newFiles.length ? newFiles : null);
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
     dropRef.current.classList.remove("bg-gray-200");
-    const { files } = e.dataTransfer;
-    if (files && files.length > 0) {
-      validateAndSetFile(files[0]);
+    const { files: droppedFiles } = e.dataTransfer;
+    if (droppedFiles && droppedFiles.length > 0) {
+      validateAndSetFiles(droppedFiles);
     }
   };
 
@@ -55,8 +61,8 @@ export default function FileInput({
   };
 
   const handleFileSelect = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      validateAndSetFile(e.target.files[0]);
+    if (e.target.files && e.target.files.length > 0) {
+      validateAndSetFiles(e.target.files);
     }
   };
 
@@ -91,6 +97,7 @@ export default function FileInput({
           <div>
             <input
               type="file"
+              multiple
               onChange={handleFileSelect}
               className="hidden"
               id="fileInput"
@@ -102,7 +109,7 @@ export default function FileInput({
             </label>
           </div>
 
-          <p className="text-sm">or drop file here</p>
+          <p className="text-sm">or drop files here</p>
         </div>
 
         <p className="text-xs text-gray-400 hidden sm:block">
@@ -110,8 +117,21 @@ export default function FileInput({
         </p>
       </div>
 
-      {file && <p className="text-green-600 text-sm">✅ {file.name}</p>}
-      {error && <p className="text-red-500 text-sm">{error}</p>}
+      {files.length > 0 && (
+        <div className="text-green-600 text-sm space-y-1">
+          {files.map((f, idx) => (
+            <p key={idx}>✅ {f.name}</p>
+          ))}
+        </div>
+      )}
+
+      {errors.length > 0 && (
+        <div className="text-red-500 text-sm space-y-1">
+          {errors.map((err, idx) => (
+            <p key={idx}>{err}</p>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

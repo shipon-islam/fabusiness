@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
   const formData = await request.formData();
+  const files = formData.getAll("files");
   if (
     !formData.has("name") ||
     !formData.has("email") ||
@@ -14,7 +15,7 @@ export async function POST(request) {
       { status: 400 }
     );
   }
-  const { name, email, phone, message, file } = Object.fromEntries(formData);
+  const { name, email, phone, message } = Object.fromEntries(formData);
 
   try {
     const mail_html = `
@@ -32,19 +33,19 @@ export async function POST(request) {
       to: process.env.EMAIL,
       subject: `Contact Form Submission from ${name}`,
       html: mail_html,
+      attachments: [],
     };
-
-    if (file && file.name) {
-      const arrayBuffer = await file.arrayBuffer();
-      const buffer = Buffer.from(arrayBuffer);
-
-      mailOptions.attachments = [
-        {
+    // Convert each file to buffer + push into attachments
+    for (const file of files) {
+      if (file && file.name) {
+        const arrayBuffer = await file.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
+        mailOptions.attachments.push({
           filename: file.name,
           content: buffer,
           contentType: file.type,
-        },
-      ];
+        });
+      }
     }
 
     await transporter.sendMail(mailOptions);

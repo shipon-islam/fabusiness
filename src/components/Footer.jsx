@@ -192,8 +192,8 @@ export default function Footer() {
                 </li>
                 <li className="flex items-center gap-x-2 hover:text-gold hover:underline">
                   <MailIcon />
-                  <a href="mailto:info@exmaple.com" target="_blank">
-                    info@exmaple.com
+                  <a href="mailto:info@faaccountant.com" target="_blank">
+                    info@faaccountant.com
                   </a>
                 </li>
               </ul>

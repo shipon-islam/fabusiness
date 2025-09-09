@@ -10,7 +10,7 @@ import InputBox from "../InputBox";
 
 export default function ContactUsSection() {
   const [loading, setLoading] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFiles, setSelectedFiles] = useState(null);
   const {
     register,
     reset,
@@ -27,8 +27,9 @@ export default function ContactUsSection() {
     formData.append("email", data.email);
     formData.append("phone", data.phone);
     formData.append("message", data.message);
-    if (selectedFile) {
-      formData.append("file", selectedFile);
+
+    if (selectedFiles && selectedFiles.length > 0) {
+      selectedFiles.forEach((file) => formData.append("files", file));
     }
 
     try {
@@ -102,7 +103,7 @@ export default function ContactUsSection() {
             />
             <div>
               <label className="pb-1.5 inline-block">Document (optional)</label>
-              <FileInput onFileChange={setSelectedFile} />
+              <FileInput onFileChange={setSelectedFiles} />
             </div>
 
             <InputBox
